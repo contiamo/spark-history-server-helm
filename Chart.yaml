@@ -1,0 +1,27 @@
+apiVersion: v1
+name: spark-history-server
+description: |
+  # Spark history server Helm Chart
+
+  [SHS](https://apache-spark-on-k8s.github.io/userdocs/running-on-kubernetes.html) Spark History Server is the web UI for completed and running Spark applications.
+
+  ## Chart Details
+
+  This chart uses AWS K8s [IRSA](https://aws.amazon.com/blogs/opensource/introducing-fine-grained-iam-roles-service-accounts/) technology to authenticate against AWS, so a proper `ServiceAccount` needs to be specified in order to have the right permissions accessing application logs S3 bucket.
+
+  ## Installing the Chart
+
+  To install the chart:
+
+  ```sh
+  helm install --set app.S3logPath=yourBucketName/eventLogFoloder
+  ```
+
+  ## Required variables
+
+  Minimum required variables are:
+  * `S3LogPath` - S3 path to read logs from
+  * `serviceAccount.name` - Service account name with proper permissions to access S3 bucket
+
+version: 0.0.1
+appVersion: 3.0.1
